@@ -13,26 +13,22 @@
 
 // Write your code here
 
-const insertCat = (catUrl) => {
-  // Don't pay attention this function, just call it and provide it a catUrl
-  if (catUrl) {
-    const img = document.createElement("img");
-    img.src = catUrl;
-    document.querySelector("body").appendChild(img);
-  }
-};
 
-const fetchCats = async (url) => {
-  const res = await fetch(url);
-  const resJson = await res.json();
-  resJson.map(item => insertCat(item.url))
-}
-
-const urlCats = "https://api.thecatapi.com/v1/images/search?limit=9&mime_types=&order=Random&size=small"
-fetchCats(urlCats);
 
 //todo Exercise2
 
 //todo 1. Take the insertCat() function and put it in a separate file called services
 //todo 2. Export the insertCat() function using a named export
 //todo 3. Import the insertCat() function in this file and use it our async function
+
+import insertCat from './services'
+
+const fetchCats = async (url) => {
+  const res = await fetch(url);
+  const resJson = await res.json();
+  resJson.map((item) => insertCat(item.url));
+};
+
+const urlCats =
+  "https://api.thecatapi.com/v1/images/search?limit=9&mime_types=&order=Random&size=small";
+fetchCats(urlCats);
