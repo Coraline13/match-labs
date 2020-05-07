@@ -40,11 +40,12 @@ const App = () => {
           <Route path="/logout" component={Logout}></Route>
           <Route
             path="/"
-            render={() =>
+            render={(props) =>
               user ? (
-                <Likes />
+                <Likes {...props} />
               ) : (
                 <Redirect
+                  {...props}
                   to={{
                     pathname: "/login",
                   }}
@@ -52,6 +53,7 @@ const App = () => {
               )
             }
           ></Route>
+
         </Switch>
       </BrowserRouter>
     </AppContext.Provider>
